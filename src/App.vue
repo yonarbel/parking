@@ -45,14 +45,27 @@
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import { LoaderPlugin } from 'vue-google-login';
+import Vue from 'vue';
 
 export default {
   name: 'App',
 
   components: {
     HelloWorld,
+    //LoaderPlugin,
   },
 
+  created() {
+    Vue.use(LoaderPlugin, {
+            client_id: "489376918742-2h48reb78ltrcpib903lbv3j10jevs08.apps.googleusercontent.com"
+        });
+
+    Vue.GoogleAuth.then(auth2 => {
+        console.log('1', auth2.isSignedIn.get());
+        console.log('2', auth2.currentUser.get())
+    })
+  },
   data: () => ({
     //
   }),
